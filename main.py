@@ -2,11 +2,11 @@ import math
 import random
 
 def Kmeans(K , N , d, iter , raw_data):
-    assert K > 1 and K < N and K.isdigit() , "Invalid number of clusters!"
-    assert N > 1 and N.isdigit() , "Invalid number of points!"
+    assert int(K) > 1 and int(K) < int(N) and K.isdigit() , "Invalid number of clusters!"
+    assert int(N) > 1 and N.isdigit() , "Invalid number of points!"
     assert d.isdigit() , "Invalid dimension number of point!"
-    assert iter > 1 and iter < 1000 and iter.isdigit() , "Invalid maximum iteration"
-
+    assert int(iter) > 1 and int(iter) < 1000 and iter.isdigit() , "Invalid maximum iteration"
+    K, N, d, iter  = int(K) , int(N) , int(d) , int(iter)
     data = parse_data(raw_data , d , N)
     K_groups , K_centers = init_classification(K , data , d)
 
@@ -19,8 +19,6 @@ def Kmeans(K , N , d, iter , raw_data):
         if (not move_flag):
             break
 
-def Kmeans(K , N , d ,raw_data):
-    return Kmeans(K, N ,d, "200" , raw_data)
 
 def euclidean_distance(vector1 , vector2):
     square_sum = 0
@@ -57,7 +55,6 @@ def parse_data(raw_data , d , N):
     raw_data_lines = [line.rstrip() for line in raw_data]
     data = []
     for line in raw_data_lines:
-        print(line)
         data.append([float(x) for x in line.split(",")])
     return data
 
@@ -77,4 +74,4 @@ def move_to_closest(vector, K_centroids, newgroups,current_group):
         newgroups[min_index].append(vector)
         return True
 
-print(parse_data(open("C:/Users/Roy Dahan/Desktop/לימודים/פרויקטו/tests/input_1.txt",mode="r"),3 , 5))
+Kmeans("3","800","3","600","C:/Users/Roy Dahan/Desktop/לימודים/פרויקטו/tests/input_1.txt")
