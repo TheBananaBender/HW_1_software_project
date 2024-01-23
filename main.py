@@ -1,5 +1,6 @@
 import math
-import random
+import sys
+
 
 def Kmeans(K , N , d, iter , raw_data):
     assert int(K) > 1 and int(K) < int(N) and K.isdigit() , "Invalid number of clusters!"
@@ -18,6 +19,8 @@ def Kmeans(K , N , d, iter , raw_data):
                 move_flag = move_flag or move_to_closest(vector, K_centers, newgroups, i)
         if (not move_flag):
             break
+        K_groups=newgroups
+    return K_groups
 
 
 def euclidean_distance(vector1 , vector2):
@@ -74,5 +77,3 @@ def move_to_closest(vector, K_centroids, newgroups,current_group):
     else:
         newgroups[min_index].append(vector)
         return True
-
-Kmeans("3","800","3","600","C:/Users/Roy Dahan/Desktop/לימודים/פרויקטו/tests/input_1.txt")
