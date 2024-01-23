@@ -9,9 +9,14 @@ def Kmeans(K , N , d, iter , raw_data):
 
     data = parse_data(raw_data , d , N)
     K_groups , K_centers = init_classification(K , data , d)
-
-
-    pass
+    for cnt in range(iter):
+        move_flag = False
+        newgroups = [[] in range(K)]
+        for i in range(K):
+            for vector in K_groups[i]:
+                move_flag = move_flag or move_to_closest(vector,K_centers,newgroups,i)
+        if(not move_flag):
+            break
 
 def Kmeans(K , N , d ,raw_data):
     return Kmeans(K, N ,d, "200" , raw_data)
@@ -21,10 +26,6 @@ def euclidean_distance(vector1 , vector2):
     for i in range(len(vector1)):
         square_sum += math.pow(vector1[i] - vector2[i],2)
     return math.sqrt(square_sum)
-
-
-def init_classification(K , data , d):
-    pass
 
 def init_classification(K,data,d):
     K_Group=[[] for i in range(K)]
@@ -60,7 +61,7 @@ def move(ind , org_K_group, target_K_group):
     target_K_group.append(item)
     return
 
-def move_to_closest(vector, K_centroids, newgroups):
+def move_to_closest(vector, K_centroids, newgroups,current_group):
     distances = [euclidean_distance(vector, K_centroids[i]) for i in range(len(K_centroids))]
     x = min(distances)
     if x < 0.001:
