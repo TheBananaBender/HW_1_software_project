@@ -55,15 +55,14 @@ def parse_data(raw_data , d , N):
         data.append([float(x) for x in line.split(",")])
     return data
 
-def move(ind , org_K_group, target_K_group):
-    item = org_K_group.pop(ind)
-    target_K_group.append(item)
-    return
-
-def move_to_closest(vector, K_centroids, newgroups):
+def move_to_closest(vector, K_centroids, newgroups , current_group):
     distances = [euclidean_distance(vector, K_centroids[i]) for i in range(len(K_centroids))]
-    x = min(distances)
-    if x < 0.001:
+    min_dist = min(distances)
+    min_index = distances.index(min_dist)
+    if euclidean_distance(K_centroids[min_dist],K_centroids[current_group]) < 0.001 or min_index == current_group:
+        newgroups[current_group].append(vector)
         return False
+    else:
+        newgroups[min_index].append(vector)
+        return True
 
-print(parse_data(open("C:/Users/Roy Dahan/Desktop/לימודים/פרויקטו/tests/input_1.txt",mode="r"),3 , 5))
