@@ -42,5 +42,5 @@ def move_to_closest(vector, K_centroids, newgroups):
     x = min(distances)
     if x < 0.001:
         return False
-    
+
 print(parse_data(open("C:/Users/Roy Dahan/Desktop/לימודים/פרויקטו/tests/input_1.txt",mode="r"),3 , 5))
