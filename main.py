@@ -3,11 +3,11 @@ import sys
 
 
 def Kmeans(K , N , d, iter , raw_data):
-    assert K > 1 and K < N and K.isdigit() , "Invalid number of clusters!"
-    assert N > 1 and N.isdigit() , "Invalid number of points!"
+    assert int(K) > 1 and int(K) < int(N) and K.isdigit() , "Invalid number of clusters!"
+    assert int(N) > 1 and N.isdigit() , "Invalid number of points!"
     assert d.isdigit() , "Invalid dimension number of point!"
-    assert iter > 1 and iter < 1000 and iter.isdigit() , "Invalid maximum iteration"
-
+    assert int(iter) > 1 and int(iter) < 1000 and iter.isdigit() , "Invalid maximum iteration"
+    K, N, d, iter  = int(K) , int(N) , int(d) , int(iter)
     data = parse_data(raw_data , d , N)
     K_groups , K_centers = init_classification(K , data , d)
 
@@ -22,8 +22,6 @@ def Kmeans(K , N , d, iter , raw_data):
         K_groups=newgroups
     return K_groups
 
-def Kmeans(K , N , d ,raw_data):
-    return Kmeans(K, N ,d, "200" , raw_data)
 
 def euclidean_distance(vector1 , vector2):
     square_sum = 0
