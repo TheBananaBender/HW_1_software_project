@@ -55,6 +55,7 @@ def parse_data(raw_data , d , N):
     raw_data_lines = [line.rstrip() for line in raw_data]
     data = []
     for line in raw_data_lines:
+        print(line)
         data.append([float(x) for x in line.split(",")])
     return data
 
