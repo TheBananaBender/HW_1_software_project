@@ -29,7 +29,7 @@ def init_classification(K , data , d):
 def init_classification(K,data,d):
     K_Group=[[] for i in range(K)]
     K_centroid = []
-    cnt=0;
+    cnt=0
     for vector in data:
         K_Group[cnt%K].append(vector)
         cnt+=1
